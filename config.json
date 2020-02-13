@@ -1,0 +1,71 @@
+{
+  "urls": {
+    "main": {
+      "path": "/",
+      "controller": "User\\MainProject\\Controllers\\ProductsController::indexAction",
+      "method": "GET"
+    },
+    "show range": {
+      "path": "/range",
+      "controller": "User\\MainProject\\Controllers\\ProductsController::rangeAction",
+      "method": "GET"
+    },
+    "show product": {
+      "path": "/range/{articul:\\d+}",
+      "controller": "User\\MainProject\\Controllers\\ProductsController::productAction",
+      "method": "GET"
+    },
+    "registration": {
+      "path": "/registration",
+      "controller": "User\\MainProject\\Controllers\\AccountController::regAction",
+      "method": "GET"
+    },
+    "add user": {
+      "path": "/registration",
+      "controller": "User\\MainProject\\Controllers\\AccountController::addUser",
+      "method": "POST"
+    },
+    "account": {
+      "path": "/cabinet",
+      "controller": "User\\MainProject\\Controllers\\AccountController::accountAction",
+      "method": "GET"
+    },
+    "autorisation": {
+      "path": "/cabinet",
+      "controller": "User\\MainProject\\Controllers\\AccountController::login",
+      "method": "POST"
+    },
+    "logout": {
+      "path": "/logout",
+      "controller": "User\\MainProject\\Controllers\\AccountController::logout",
+      "method": "GET"
+    },
+    "carts": {
+      "path": "/cart",
+      "controller": "User\\MainProject\\Controllers\\ProductsController::cartsAction",
+      "method": "GET"
+    },
+    "add DB": {
+      "path": "/product",
+      "controller": "User\\MainProject\\Controllers\\ProductsController::addToDB",
+      "method": "POST"
+    },
+    "admin": {
+      "path": "/admin",
+      "controller": "User\\MainProject\\Controllers\\AdminController::adminAction",
+      "method": "GET"
+    },
+    "add admin": {
+      "path": "/admin",
+      "controller": "User\\MainProject\\Controllers\\AdminController::adminAddAction",
+      "method": "POST"
+    }
+  },
+  "db": {
+    "server": "127.0.0.1",
+    "dbname": "main_project",
+    "user": "user",
+    "pass": "12344321",
+    "charset": "utf8"
+  }
+}

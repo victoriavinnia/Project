@@ -1,0 +1,17 @@
+{
+    "name": "user/main_project",
+    "description": "MVC",
+    "type": "project",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "require": {
+        "nikic/fast-route": "^2.0@dev",
+        "ext-json": "*",
+        "ext-pdo": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "User\\MainProject\\": "src/"
+        }
+    }
+}

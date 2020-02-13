@@ -1,0 +1,141 @@
+form {
+    margin: 0 10em;
+}
+h1 {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: dimgray;
+    text-align: center;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+fieldset {
+    border: 5px solid lightgrey;
+    margin: 30px 0;
+    border-radius: 10px;
+}
+
+form div {
+    margin: 15px;
+}
+
+input {
+    outline: none;
+    border: 1px solid grey;
+    border-radius: 3px;
+    font-size: inherit;
+}
+
+input:focus {
+    border: 1px solid coral;
+}
+
+input:disabled {
+    border: 1px solid lightgrey;
+}
+
+input[type="submit"],
+input[type="reset"] {
+    padding: 6px 30px;
+    border: none;
+    margin-right: 20px;
+}
+
+input[type="submit"] {
+    color: white;
+    background: dimgrey;
+}
+
+input[type="reset"] {
+    background: lightgrey;
+}
+
+
+.info-block,
+.success,
+.error {
+    font-size: 10pt;
+}
+
+.info-block {
+    color: lightgray;
+}
+
+.success {
+    color: lightgray;
+}
+
+.error {
+    color: red;
+}
+@media screen and (max-width: 480px){
+    body {
+        font-size: 18px;
+    }
+
+    section {
+        text-align: center;
+    }
+    .cards {
+        display: block;
+    }
+    li {
+        border-bottom: 2px solid lightgray;
+        padding: 0.5em 0 0.5em 1em;
+    }
+    h1 {
+        font-size: 24px;
+    }
+    form {
+        margin: 0 2em;
+    }
+    label {
+        display: block;
+        font-size: 15px;
+        margin-bottom: 7px;
+    }
+    input[type="submit"],
+    input[type="reset"] {
+        display: inline-block;
+        font-size: 12px;
+        padding: 5px 20px;
+    }
+
+    #login,
+    #pwd {
+        display: block;
+    }
+    form {
+        margin-bottom: 2em;
+    }
+}
+
+@media screen
+and (min-width: 481px)
+and (max-width: 768px) {
+    body {
+        font-size: 18px;
+    }
+    section {
+        text-align: center;
+    }
+    h1 {
+        font-size: 30px;
+    }
+
+    form {
+        margin: 0 2em;
+    }
+    label {
+        font-size: 16px;
+    }
+    input[type="submit"],
+    input[type="reset"] {
+        font-size: 15px;
+        padding: 5px 25px;
+    }
+    form {
+        margin-bottom: 3em;
+    }
+}

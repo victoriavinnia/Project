@@ -1,0 +1,144 @@
+h2 {
+    text-align: center;
+    margin-top: 1.2em;
+    margin-bottom: 2em;
+    color: dimgray;
+}
+
+section {
+    display: grid;
+    grid-template-areas:
+            "div div div";
+    grid-template-columns: 25% 30% 45%;
+    grid-template-rows: 9em;
+    margin: 1em 7em 1em 7em;
+    border-bottom: 3px solid lightgray;
+}
+div .prices {
+    display: grid;
+    grid-template-areas:
+            "div div div";
+    grid-template-columns: 30% 40% 30%;
+}
+img {
+    height: 20vh;
+    width: 9vw;
+}
+h3 {
+    color: dimgray;
+    text-align: left;
+    margin-top: 2em;
+    margin-bottom: 1.2em;
+}
+.delete {
+    border: none;
+    background: lightgray;
+    color: dimgray;
+    padding: 3px;
+}
+.value,
+.value1 {
+    font-size: 1.7em;
+    color: dimgray;
+}
+.count_item,
+.minus,
+.plus {
+    display: inline-block;
+    font-size: 1.7em;
+    border: none;
+    background: white;
+    color: dimgray;
+}
+p {
+    color: #4e555b;
+    text-align: center;
+    margin: 0.7em auto 1.2em auto;
+}
+
+@media screen and (max-width: 480px){
+    body {
+        font-size: 18px;
+    }
+
+    section {
+        text-align: center;
+    }
+
+    .cards {
+        display: block;
+    }
+    h1 {
+        font-size: 24px;
+    }
+    section {
+        grid-template-rows: 6em;
+        margin: 1em 1em 1em 1em;
+        border-bottom: 2px solid lightgray;
+    }
+    img {
+        height: 80px;
+        width: 100px;
+    }
+    h3 {
+        font-size: 15px;
+    }
+    .delete {
+        font-size: 10px;
+        padding: 3px;
+    }
+    p {
+        font-size: 13px;
+    }
+    .count_item,
+    .minus,
+    .plus,
+    .value,
+    .value1 {
+        font-size: 1em;
+    }
+}
+
+@media screen
+and (min-width: 481px)
+and (max-width: 768px) {
+    body {
+        font-size: 18px;
+    }
+    section {
+        text-align: center;
+    }
+    h1 {
+        font-size: 30px;
+    }
+    p {
+        font-size: 15px;
+    }
+    section {
+        grid-template-rows: 7em;
+        margin: 1em 2em 1em 2em;
+        border-bottom: 2px solid lightgray;
+    }
+    img {
+        height: 120px;
+        width: 100px;
+    }
+    h3 {
+        font-size: 18px;
+    }
+    .delete {
+        font-size: 12px;
+        padding: 4px;
+    }
+    p {
+        font-size: 15px;
+    }
+    .count_item,
+    .minus,
+    .plus,
+    .value,
+    .value1 {
+        font-size: 20px;
+    }
+
+}
