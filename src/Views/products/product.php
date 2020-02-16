@@ -1,3 +1,7 @@
+<?php
+$id = isset($_COOKIE['id']) ? $_COOKIE['id'] : $_COOKIE[' '];
+
+?>
 <h2>Информация о товаре</h2>
 <p id="error"></p>
 <form method="post" action="/product" name="product" >
@@ -17,7 +21,7 @@
             </div>
         </section>
 </form>
-        <button name="articul" data-art="<? echo $product['articul']; ?>" class="add_to_cart" onclick="buttonClick()">Добавить в корзину</button>
+        <input type="submit" name="articul" data-art="<? echo $product['articul']; ?>" class="add_to_cart" onclick="buttonClick()" value="Добавить в корзину">
         <p>Добавлено <span id="elem" name="count" >0</span> шт.</p>
 <script src="/static/js/product.js"></script>
 

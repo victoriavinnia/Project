@@ -2,7 +2,6 @@
 namespace User\MainProject\Models;
 
 use User\MainProject\Core\DBConnection;
-use User\MainProject\Models\AccountModel;
 
 class ProductsModel
 {
@@ -11,7 +10,6 @@ class ProductsModel
 
 
     private $db; // ссылка на связь базы данных
-    private $account_model;
     public function __construct()
     {
         $this->db = DBConnection::getInstance();
@@ -37,52 +35,31 @@ class ProductsModel
             ON products.articul = photo_products.product_artcle WHERE articul = :articul;";
         return $this->db->execute($sql, ['articul'=>$articul], false);
     }
-    public function getProduct(){
-        $sql = "SELECT articul, `name`, description, price, photo_product FROM products INNER JOIN photo_products ON products.articul = 
-            photo_products.product_artcle;";
-        return $this->db->queryAll($sql);
-    }
-//    public function getOrder(){
-//        $sql = "SELECT articul, name_product, `count`, cost, id_user FROM `order` WHERE id_user = :id_user;";
+//    public function getProduct(){
+//        $sql = "SELECT articul, `name`, description, price, photo_product FROM products INNER JOIN photo_products ON products.articul =
+//            photo_products.product_artcle;";
 //        return $this->db->queryAll($sql);
 //    }
-    public function getOrder(array $order){
-        $articul = $order['articul'];
-        $name_product = $order['name'];
-        $count = $order['count'];
-        $cost = $order['cost'];
-        $id_user = $order['id_user'];
+
+    public function getOrder($id) {
         $sql = "SELECT articul, name_product, `count`, cost, id_user FROM `order` WHERE id_user = :id_user;";
-        $params = [
-            "articul" => $order['articul'],
-            "name_product" => $order['name'],
-            "count" => $order['count'],
-            "cost" => $order['cost'],
-            "id_user" => $order['id_user'],
-        ];
-        $order = $this->db->execute($sql, ['id_user' => $id_user], false);
-        return $order;
+        return  $this->db->execute($sql, ['id_user' => $id], false);
     }
-//    public function getOrder() {
-//        $sql = "SELECT articul, name_product, `count`, cost, id_user FROM `order` WHERE id_user = :id_user;";
-//        return $this->db->queryAll($sql);
-//    }
 
     public function addProduct(array $product)     {
-        $articul = $product['articul'];
-        $name_product = $product['name'];
-        var_dump($name_product);
-        $count = $product['count'];
-        $cost = $product['cost'];
-        $sql = "INSERT INTO order (articul, name_product, `count`, cost, id_user) VALUES (:articul, :name_product, :`count`, :cost, :id_user)";
-        $params = [
-            "articul" => $product['articul'],
-            "name_product" => $product['name'],
-            "count" => $product['count'],
-            "cost" => $product['cost'],
-            "id_user" => $product['id_user'],
-        ];
-        $this->db->executeSql($sql, $params);
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $post = $_POST;
+            if(isset($post['id'])) {
+                if($post['id'] != $_COOKIE['id']) {
+                    setcookie('id', $post['id'], time()+3600);
+                    $id = $post['id'];
+             $sql = "INSERT INTO order (articul, name_product, `count`, cost, id_user) VALUES (:articul, :name_product, 
+:`count`, :cost, :id_user) WHERE id_user = :id;";
+                    return $this->db->execute($sql, ['id_user'=>$id], false);
+                } else {
+                    $id = $_COOKIE['id'];
+                }
+            }
+        }
     }
-
 }

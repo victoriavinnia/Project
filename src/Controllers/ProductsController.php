@@ -58,42 +58,10 @@ class ProductsController extends Controller
         ];
         return $this->generateResponse($content, $data);
     }
-//    public function cartAction(){
-//         $order = $this->products_model->getOrder();
-//        $content = 'cart/cart.php';
-//        $data = [
-//            'page_title'=>'Ваша корзина',
-//            'order' => $order,
-//            'stylesheet'=> '<link rel="stylesheet" href="/static/css/cart.css">',
-//        ];
-//        return $this->generateResponse($content, $data);
-//}
-//    public function cartsAction(){
-//        $content = 'cart/cart.php';
-//        $data = [
-//            'page_title'=>'Ассортимент',
-//            'stylesheet'=> '<link rel="stylesheet" href="/static/css/cart.css">',
-//        ];
-//        return $this->generateResponse($content, $data);
-//
-//    }
-//    public function cartAction(Request $request)
-//    {
-//        $id_user = $request->params()['id_user'];
-//        $order = $this->products_model->getOrder($id_user);
-//        $content = 'cart/cart.php';
-//        $data = [
-//            'page_title' => 'Ваша корзина',
-//            'order' => $order,
-//            'stylesheet' => '<link rel="stylesheet" href="/static/css/cart.css">',
-//        ];
-//        return $this->generateResponse($content, $data);
-//    }
     public function cartsAction(Request $request) {
         $id_user = $request->params()['id_user'];
         $content = 'cart/cart.php';
         $order = $this->products_model->getOrder($id_user);
-//        var_dump($order);
         $data = [
             'page_title' => 'Ваша корзина',
             'order' => $order,
@@ -103,12 +71,7 @@ class ProductsController extends Controller
     }
     public function addToDB(Request $request) {
         $result = $this->products_model->addProduct($request->post());
-//        $content = 'products/product.php';
-        $data = [
-            'result' => $result,
-        ];
-       // return $this->ajaxResponse($result);
-        return $this->generateResponse($data);
+        return $this->ajaxResponse($result);
     }
 
 }
