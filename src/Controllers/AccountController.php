@@ -35,6 +35,7 @@ class AccountController extends Controller
         $result = $this->account_model->addUser($request->post());
         return $this->ajaxResponse($result);
     }
+
     public function login(Request $request) {
         $formData = $request->post();
         $result =  $this->account_model->autorisation($formData);
@@ -42,7 +43,6 @@ class AccountController extends Controller
             $_SESSION['login'] = $formData['login'];
         }
         return $this->ajaxResponse($result);
-
     }
 
     public function logout() {

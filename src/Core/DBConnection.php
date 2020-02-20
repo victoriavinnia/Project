@@ -66,6 +66,7 @@ class DBConnection
         $statement = $this->connection->prepare($sql);
         $statement->execute($params);
 
+
         if (!$all){
             return $statement->fetch();
         }
@@ -73,6 +74,7 @@ class DBConnection
     }
     public function executeSql($sql, $params) {
         $statement = $this->connection->prepare($sql, $params);
+      //  var_dump($params);
         $statement->execute($params);
     }
 

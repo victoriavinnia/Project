@@ -59,19 +59,41 @@ class ProductsController extends Controller
         return $this->generateResponse($content, $data);
     }
     public function cartsAction(Request $request) {
-        $id_user = $request->params()['id_user'];
-        $content = 'cart/cart.php';
-        $order = $this->products_model->getOrder($id_user);
-        $data = [
-            'page_title' => 'Ваша корзина',
-            'order' => $order,
-            'stylesheet'=> '<link rel="stylesheet" href="/static/css/cart.css">',
-        ];
-        return $this->generateResponse($content, $data);
+        $id = null;
+        if($_SESSION['id']) {
+            $id = $_SESSION['id'];
+        }
+
+//        $id_user = $request->params()['id_user'];
+//        var_dump($request);
+        if (isset($id)) {
+            $content = 'cart/cart.php';
+            $order = $this->products_model->getOrder($id);
+
+            $data = [
+                'page_title' => 'Ваша корзина',
+                'order' => $order,
+                'stylesheet'=> '<link rel="stylesheet" href="/static/css/cart.css">',
+            ];
+            return $this->generateResponse($content, $data);
+        } else {
+            header('Location: /cabinet');
+        }
     }
+
     public function addToDB(Request $request) {
-        $result = $this->products_model->addProduct($request->post());
-        return $this->ajaxResponse($result);
+        $productData = $request->post();
+        $this->products_model->addProduct($productData);
+
+        return $this->ajaxResponse('success');
+    }
+    public function makeOrder(Request $request) {
+        $order = $request->post()['order'];
+        $order = json_decode($order, true);
+        $this->products_model->makeOrder($order);
+
+        return $this->ajaxResponse($order);
+     //   return $this->generateResponse('success');
     }
 
 }

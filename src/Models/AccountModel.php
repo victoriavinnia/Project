@@ -26,6 +26,7 @@ class AccountModel
         if($pwd !== $user['pwd']) {
             return self::ERROR;
         }
+        $_SESSION['id'] = $user['id'];
         return self::SUCCESS;
     }
 
@@ -49,9 +50,8 @@ class AccountModel
         return self::REGISTRATION_SUCCESS;
     }
     private function isUser(string $login) {
-        $sql = 'SELECT `login`, `pwd` FROM users WHERE login = :login';
+        $sql = 'SELECT `id`, `login`, `pwd` FROM users WHERE login = :login';
         $user = $this->db->execute($sql, ['login' => $login], false);
-      //  var_dump($user);
         return $user;
 
     }

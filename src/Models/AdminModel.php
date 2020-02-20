@@ -48,7 +48,7 @@ class AdminModel
         $full_description = $admin_data['full_description'];
         $price = $admin_data['price'];
         $photo_product = $pic['name']; 
-        var_dump($photo_product);
+     //   var_dump($photo_product);
         $products_sql = "INSERT INTO products (`articul`, `name`, `description`, `full_description`, `price`) VALUES 
             (:articul, :name, :description, :full_description, :price)";
         $photo_products_sql = "INSERT INTO photo_products (photo_product, product_artcle) VALUES (:photo_product, :product_artcle)";

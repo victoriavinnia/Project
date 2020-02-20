@@ -32,6 +32,7 @@ class AdminController extends Controller
         $content = 'admin/admin.php';
         $data = [
             'page_title'=>'Страница Администратора',// здесь то что мы хотим добавить
+            'stylesheet'=> '<link rel="stylesheet" href="/static/css/admin.css">',
             'result' => $result,
         ];
       //  return $this->ajaxResponse($result);

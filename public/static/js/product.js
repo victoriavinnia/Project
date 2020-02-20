@@ -1,30 +1,89 @@
-let button = document.querySelector(".add_to_cart");
-console.log(button);
+// import countProduct from "./countProduct";
 
-button.addEventListener('click', addToCart);
-// добавления товара в корзину
-// let cart = {}; // корзина
-function addToCart() {
+let minus = document.querySelectorAll(".minus");
+// console.log(minus);
+for (let min of minus) {
+    min.addEventListener("click", minusProduct);
+}
+
+function minusProduct(event) {
+    event.preventDefault();
     let articul = this.dataset.art;
-    // if (cart[articul] !== null) {
-    //     cart[articul]++;
-    // }
-    // else {
-    //     cart[articul] = 1;
-    // }
-    // console.log(cart);
+    console.log(articul); // полчаем артикул товара
+    let count = document.getElementById('total-count-' + articul);
+    if (count.innerText <= 0) {
+        count.innerText = 0;
+        let total_currency = document.getElementById('total-currency-' + articul); //получили стоимость,
+        // цена добавляется в свойство стоимости динамически
+        total_currency.innerText = 0;
+        console.log(total_currency);
+    } else {
+        count.innerText--;
+    }
+}
+
+let plus = document.querySelectorAll(".plus");
+// console.log(plus);
+for (let pl of plus) {
+    pl.addEventListener("click", plusProduct);
+}
+
+function plusProduct(event) {
+    event.preventDefault();
+    let articul = this.dataset.art;
     console.log(articul);
+    let count = document.getElementById('total-count-' + articul);
+    count.innerText++;
 }
-function buttonClick() {
-    let span = document.getElementById('elem');
-    span.innerHTML ++;
-}
+
+let button = document.querySelector(".add_to_cart");
+// console.log(button);
+
+// countProduct();
+//
+// button.addEventListener('click', addToCart);
+// // добавления товара в корзину
+// // let cart = {}; // корзина
+// function addToCart() {
+//     let articul = this.dataset.art;
+//     // if (cart[articul] !== null) {
+//     //     cart[articul]++;
+//     // }
+//     // else {
+//     //     cart[articul] = 1;
+//     // }
+//     // console.log(cart);
+//     console.log(articul);
+// }
+
+// let input = document.getElementById('submitProduct');
+// input.addEventListener('click', sendRequest);
 
 const SUCCESS = "Товар добавлен";
 const ERROR = "Ошибка при добавлении товара";
 
+let makeOrder = document.forms.testTest;
+makeOrder.addEventListener('submit', makeOrderHandler);
+
+function makeOrderHandler(event) {
+    event.preventDefault();
+
+    let data = orderDataHandler();
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", this.action, true);
+    xhr.send(data);
+
+    xhr.onload = function () {
+        console.log(xhr.responseText);
+        if (xhr.status === 200 && xhr.responseText === 'success') {
+            console.log('rjneago');
+        }
+    };
+}
+
 function responseHandler(response) {
-    console.log(response);
+    // console.log(response);
     if (response == SUCCESS) {
         window.location.replace("/cart");
     } else if (response == ERROR) {
@@ -33,15 +92,18 @@ function responseHandler(response) {
     }
 }
 
-function sendRequest(event) {
-    event.preventDefault();
-    let art = this.dataset.art;
-    let request = new XMLHttpRequest();
-    request.open("POST", "/product", true);
-    request.send(art); // отправка данных
-    request.onload = function () {
-        if(request.status === 200) {
-            responseHandler(request.responseText);
-        }
-    }
+function orderDataHandler() {
+    let inputData = document.getElementById('submitProduct');
+    let div = document.getElementById('total-count-' + inputData.dataset.art);
+    let count = div.innerHTML;
+
+    let data = new FormData();
+    data.append('articul', inputData.dataset.art);
+    data.append('price', inputData.dataset.price);
+    data.append('name', inputData.dataset.name);
+    data.append('userId', inputData.dataset.userId);
+    data.append('count', count);
+
+    return data;
 }
+

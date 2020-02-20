@@ -4,6 +4,7 @@
 <p id="error"></p>
     <form method="post" action="/registration" name="registration" >
         <h1>Регистрация</h1>
+      <a href="/cabinet">Войти</a>
         <fieldset>
             <div>
                 <label for="username">Введите Ваше имя</label>

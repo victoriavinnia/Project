@@ -49,9 +49,15 @@ const ERROR = "Ошибка авторизации";
 form.addEventListener('submit', sendRequest);
 
 function responseHandler(response) {
-    console.log(response);
+  //  console.log(login.value);
+  //  console.log(pwd.value);
+  //  console.log(response);
     if (response == SUCCESS) {
-        window.location.replace("/range");// если все успешно перенаправляем в range
+        if(login.value === 'admin' && pwd.value === '987654'){
+            window.location.replace("/admin");
+        } else {
+            window.location.replace("/range"); // если все успешно перенаправляем в range}
+        }
     } else if (response == ERROR) {
         let elem = document.getElementById("error");
         elem.innerText = ERROR;

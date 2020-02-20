@@ -3,7 +3,7 @@
             <div class="cards xs xm">
 <?php foreach ($new_goods as $good) : ?>
                 <div class="card">
-                    <img src="/static/img/<? echo $good['photo_product']; ?>">
+                    <img class="img" src="/static/img/<? echo $good['photo_product']; ?>">
                     <p><? echo $good['name']; ?></p>
                     <p><strong><? echo $good['price']; ?> ₽</strong></p>
                 </div>

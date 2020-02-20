@@ -49,6 +49,43 @@ span{
     color: #4e555b;
     text-align: left;
 }
+.count_item,
+.minus,
+.plus {
+    margin-top: 25%;
+    display: inline-block;
+    font-size: 1.7em;
+    border: none;
+    background: white;
+    color: dimgray;
+}
+.message {
+    margin-left: 10%;
+    color: #4e555b;
+    font-weight: bold;
+}
+a {
+    font-weight: bold;
+    position: relative;
+    color: dimgray;
+    cursor: pointer;
+    line-height: 1;
+    text-decoration: none;
+}
+a:after {
+    display: block;
+    position: absolute;
+    left: 0; /*изменить на right:0;, чтобы изменить направление подчёркивания */
+    width: 0;/*задаём длинну линии до наведения курсора*/
+    height: 2px; /*задаём ширину линии*/
+    background-color: grey; /*задаём цвет линии*/
+    content: "";
+    transition: width 0.3s ease-out; /*задаём время анимации*/
+}
+a:hover:after,
+a:focus:after {
+    width: 100%; /*устанавливаем значение 100% чтобы ссылка подчёркивалась полностью*/
+}
 
 @media screen and (max-width: 480px){
     body {
@@ -82,6 +119,11 @@ span{
     p,
     span {
         font-size: 13px;
+    }
+    .count_item,
+    .minus,
+    .plus {
+        font-size: 17px;
     }
 }
 
@@ -119,6 +161,11 @@ and (max-width: 768px) {
     p,
     span {
         font-size: 15px;
+    }
+    .count_item,
+    .minus,
+    .plus {
+        font-size: 1em;
     }
 
 }

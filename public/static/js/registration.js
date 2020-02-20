@@ -82,16 +82,16 @@ function outForm(event) {
 const USER_EXISTS = "Пользователь с таким логином уже существует";
 const REGISTRATION_SUCCESS = "Регистрация прошла успешно";
 form.addEventListener('submit', sendRequest);
-
-function responseHandler(response) {
-    console.log(response);
-    if (response == REGISTRATION_SUCCESS) {
-        window.location.replace("/cabinet");// если все успешно перенаправляем на страницу войти
-    } else if (response == USER_EXISTS) {
-        let elem = document.getElementById("error");
-        elem.innerText = USER_EXISTS;
-    }
-}
+//
+// function responseHandler(response) {
+//     console.log(response);
+//     if (response == REGISTRATION_SUCCESS) {
+//         window.location.replace("/cabinet");// если все успешно перенаправляем на страницу войти
+//     } else if (response == USER_EXISTS) {
+//         let elem = document.getElementById("error");
+//         elem.innerText = USER_EXISTS;
+//     }
+// }
 
 function sendRequest(event) {
     event.preventDefault(); // отменили отправку формы
@@ -101,7 +101,12 @@ function sendRequest(event) {
     request.send(data); // отправка данных
     request.onload = function () {
         if(request.status === 200) {
-            responseHandler(request.responseText);
+            window.location.replace("/cabinet");
+            // let elem = document.getElementById("error");
+            // elem.innerText = REGISTRATION_SUCCESS;
+        } else if (response == USER_EXISTS) {
+            let elem = document.getElementById("error");
+            elem.innerText = USER_EXISTS;
         }
     }
 }

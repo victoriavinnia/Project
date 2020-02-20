@@ -50,6 +50,11 @@
       "controller": "User\\MainProject\\Controllers\\ProductsController::addToDB",
       "method": "POST"
     },
+    "make Order": {
+      "path": "/cart",
+      "controller": "User\\MainProject\\Controllers\\ProductsController::makeOrder",
+      "method": "POST"
+    },
     "admin": {
       "path": "/admin",
       "controller": "User\\MainProject\\Controllers\\AdminController::adminAction",
