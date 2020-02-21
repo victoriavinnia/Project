@@ -39,25 +39,6 @@ function plusProduct(event) {
 let button = document.querySelector(".add_to_cart");
 // console.log(button);
 
-// countProduct();
-//
-// button.addEventListener('click', addToCart);
-// // добавления товара в корзину
-// // let cart = {}; // корзина
-// function addToCart() {
-//     let articul = this.dataset.art;
-//     // if (cart[articul] !== null) {
-//     //     cart[articul]++;
-//     // }
-//     // else {
-//     //     cart[articul] = 1;
-//     // }
-//     // console.log(cart);
-//     console.log(articul);
-// }
-
-// let input = document.getElementById('submitProduct');
-// input.addEventListener('click', sendRequest);
 
 const SUCCESS = "Товар добавлен";
 const ERROR = "Ошибка при добавлении товара";

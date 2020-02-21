@@ -41,11 +41,6 @@ class ProductsModel
             ON products.articul = photo_products.product_artcle WHERE articul = :articul;";
         return $this->db->execute($sql, ['articul' => $articul], false);
     }
-//    public function getProduct(){
-//        $sql = "SELECT articul, `name`, description, price, photo_product FROM products INNER JOIN photo_products ON products.articul =
-//            photo_products.product_artcle;";
-//        return $this->db->queryAll($sql);
-//    }
 
     public function getOrder($id)
     {
@@ -58,7 +53,7 @@ class ProductsModel
     {
         $existsProduct = $this->checkAlreadyAdded($product['userId'], $product['articul']);
 
-        if ($existsProduct){
+        if ($existsProduct) {
             $params = null;
 
             $params1 = [
@@ -71,7 +66,7 @@ class ProductsModel
 
             $this->db->executeSql($sql, $params1);
 
-        } elseif (!$existsProduct){
+        } elseif (!$existsProduct) {
             $params = null;
 
             $params = [
@@ -95,34 +90,75 @@ class ProductsModel
 
         $params = [
             'articul' => $articul,
-            'id_user' =>$userId,
+            'id_user' => $userId,
         ];
 
         $sql = "SELECT * FROM `order` WHERE id_user = :id_user AND articul = :articul;";
 
         return $this->db->execute($sql, $params, false);
     }
-    public function makeOrder(array $order) {
 
+    private function existsOrder($id, $article)
+    {
+        $params = null;
 
-        foreach ($order as $item) {
-            $articul = $item['articul'];
-//            $price = $item['price'];
-            $countity= $item['count'];
-            $cost = $item['cost'];
-            $id_user = $item['id'];
-          //  var_dump($cost);
-            $sql = "INSERT INTO `main_order` (articul, `count`, cost, id_user) VALUES (:articul, :countity, :cost, :id_user)";
-          //  $cost = $item['price'] * $item['count'];
-         //   var_dump($cost);
-            $params = [
-                'articul' => $item['articul'],
-                'countity' => $item['count'],
-                'cost' => $cost,
-                'id_user' => $item['id'],
-            ];
-             $this->db->executeSql($sql, $params);
-        }
+        $params = [
+            'articul' => $article,
+            'id_user' => $id,
+        ];
+
+        $sql = "SELECT * FROM `main_order` WHERE id_user = :id_user AND articul = :articul;";
+
+        return $this->db->execute($sql, $params, false);
     }
 
+
+
+    public function makeOrder(array $order)
+    {
+        foreach ($order as $item) {
+            $existsOrder = $this->existsOrder($item['id'], $item['articul']);
+
+            if ($existsOrder) {
+                var_dump('$existsOrder');
+                var_dump('item', $item);
+                $params = null;
+
+                var_dump('existsOrder', $existsOrder);
+                $articul = $item['articul'];
+                $countity = $item['count'];
+                $cost = $item['cost'];
+                $id_user = $item['id'];
+                //  var_dump($cost);
+                $sql = "UPDATE `main_order` SET `count`=:countity, cost=:cost  WHERE articul=:articul AND id_user=:id_user";
+                //  $cost = $item['price'] * $item['count'];
+                //   var_dump($cost);
+                $params = [
+                    'articul' => $item['articul'],
+                    'cost' => $item['cost'],
+                    'id_user' => $item['id'],
+                    'countity' => $item['count'],
+                ];
+                //   var_dump('params',$params);
+                // запуск подготовленного запроса на выполнение
+                $this->db->executeSql($sql, $params);
+            } elseif (!$existsOrder) {
+                var_dump('!$existsOrder');
+                $params = null;
+                $articul = $item['articul'];
+                $countity = $item['count'];
+                $cost = $item['cost'];
+                $id_user = $item['id'];
+                //  var_dump($cost);
+                $sql = "INSERT INTO `main_order` (articul, `count`, cost, id_user) VALUES (:articul, :countity, :cost, :id_user)";
+                $params = [
+                    'articul' => $item['articul'],
+                    'countity' => $item['count'],
+                    'cost' => $cost,
+                    'id_user' => $item['id'],
+                ];
+                $this->db->executeSql($sql, $params);
+            }
+        }
+    }
 }

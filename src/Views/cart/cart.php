@@ -36,10 +36,8 @@
         </section>
 <? endforeach; ?>
 
-<!--        <form action="/cart" name="cart" method="post">-->
             <input type="submit"
                    id="submitOrder"
-
                    data-user-id="<? echo $_SESSION['id']; ?>"
                    value="Оформить заказ">
         </form>

@@ -29,11 +29,8 @@ function focusOnUsername() {
     }
 }
 
-function focusOnEmail() { //!!!!!!!!!! не работает
-   // let reg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/i;
+function focusOnEmail() {
     let regExp =  /^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/;
-     //   /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/i;
-    // let form = document.forms.registration;
     let address = form.email.value;
 
     // console.log((address));
@@ -82,16 +79,6 @@ function outForm(event) {
 const USER_EXISTS = "Пользователь с таким логином уже существует";
 const REGISTRATION_SUCCESS = "Регистрация прошла успешно";
 form.addEventListener('submit', sendRequest);
-//
-// function responseHandler(response) {
-//     console.log(response);
-//     if (response == REGISTRATION_SUCCESS) {
-//         window.location.replace("/cabinet");// если все успешно перенаправляем на страницу войти
-//     } else if (response == USER_EXISTS) {
-//         let elem = document.getElementById("error");
-//         elem.innerText = USER_EXISTS;
-//     }
-// }
 
 function sendRequest(event) {
     event.preventDefault(); // отменили отправку формы
